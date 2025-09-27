@@ -76,3 +76,53 @@ def task6():
             break
     cap.release()
     cv2.destroyAllWindows()
+
+def task8():
+    def cam_with_colored_cross():
+        cap = cv2.VideoCapture(0)
+        cap.set(3, 640)
+        cap.set(4, 480)
+
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            # Получаем размеры кадра
+            height, width = frame.shape[:2]
+            center_x, center_y = width // 2, height // 2
+
+            center_pixel = frame[center_y, center_x]
+            b, g, r = center_pixel[0], center_pixel[1], center_pixel[2]
+
+            if r > g and r > b:
+                cross_color = (0, 0, 255)
+            elif g > r and g > b:
+                cross_color = (0, 255, 0)
+            else:
+                cross_color = (255, 0, 0)
+
+            v_width = 20
+            v_height = 200
+            h_width = 200
+            h_height = 20
+
+            cv2.rectangle(frame,
+                          (center_x - v_width // 2, center_y - v_height // 2),
+                          (center_x + v_width // 2, center_y + v_height // 2),
+                          cross_color, -1)
+            cv2.rectangle(frame,
+                          (center_x - h_width // 2, center_y - h_height // 2),
+                          (center_x + h_width // 2, center_y + h_height // 2),
+                          cross_color, -1)
+            cv2.putText(frame, f"RGB: ({r},{g},{b})",
+                        (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+
+            cv2.imshow('Camera with Colored Cross', frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        cap.release()
+        cv2.destroyAllWindows()
+
+    cam_with_colored_cross()
