@@ -126,3 +126,19 @@ def task8():
         cv2.destroyAllWindows()
 
     cam_with_colored_cross()
+
+def task7_9():
+    video = cv2.VideoCapture(1)
+    ret, frame = video.read()
+    width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    video_writer = cv2.VideoWriter("output.mp4", fourcc, 25, (width, height))
+    while True:
+        ret, frame = video.read()
+        video_writer.write(frame)
+        cv2.imshow('Video', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    video.release()
+    cv2.destroyAllWindows()
