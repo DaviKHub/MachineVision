@@ -50,3 +50,29 @@ def task5():
     cv2.imshow('img_hsv', img_hsv)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+def task6():
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 640)
+    cap.set(4, 480)
+    while True:
+        ret, frame = cap.read()
+        center_x, center_y = 320, 240
+        v_width = 20
+        v_height = 240
+        h_width = 220
+        h_height = 20
+        cv2.rectangle(frame,
+                      (center_x - v_width // 2, center_y - v_height // 2),
+                      (center_x + v_width // 2, center_y + v_height // 2),
+                      (0, 0, 255))
+
+        cv2.rectangle(frame,
+                      (center_x - h_width // 2, center_y - h_height // 2),
+                      (center_x + h_width // 2, center_y + h_height // 2),
+                      (0, 0, 255))
+        cv2.imshow('Video', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    cap.release()
+    cv2.destroyAllWindows()
