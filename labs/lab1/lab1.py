@@ -10,3 +10,13 @@ def task2():
     cv2.imshow('image_2', img_2)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+def task3():
+    cap = cv2.VideoCapture('../../res/vids/video1.mp4', cv2.CAP_ANY)
+    ret, frame = cap.read()
+    while frame is not None:
+        if not (ret):
+            break
+        cv2.imshow('frame', frame)
+        if cv2.waitKey(1) & 0xFF == 27:
+            break
