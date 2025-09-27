@@ -40,3 +40,13 @@ def task4():
             break
     video.release()
     cv2.destroyAllWindows()
+    
+def task5():
+    img_rgb = cv2.imread("../../res/pics/2.png")
+    cv2.namedWindow("img_png", cv2.WINDOW_NORMAL)
+    cv2.imshow('img_rgb', img_rgb)
+    img_hsv = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2HSV)
+    cv2.namedWindow("img_hsv", cv2.WINDOW_NORMAL)
+    cv2.imshow('img_hsv', img_hsv)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
