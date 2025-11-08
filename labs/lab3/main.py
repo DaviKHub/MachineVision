@@ -6,8 +6,8 @@ cv2.namedWindow('cv', cv2.WINDOW_AUTOSIZE)
 cv2.namedWindow('hand', cv2.WINDOW_AUTOSIZE)
 blure = cv2.GaussianBlur(img,(5,5),2)
 cv2.imshow('cv', blure)
-n = 3
-sigma = 1
+n = 9
+sigma = 5
 
 kernel = np.zeros((n,n))
 
